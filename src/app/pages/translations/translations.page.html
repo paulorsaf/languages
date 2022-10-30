@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Languages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+    <ion-fab-button id="open-modal" (click)="isModalOpened = !isModalOpened">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-list>
+    <ion-item *ngFor="let translation of translations">
+      <ion-label>
+        <p><ion-text color="primary">{{translation.original}}</ion-text></p>
+        <p><ion-text>{{translation.translation}}</ion-text></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<ion-modal trigger="open-modal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Add translation</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding" *ngIf="isModalOpened">
+      <form [formGroup]="form">
+        <ion-item>
+          <ion-label position="stacked">Word</ion-label>
+          <ion-input type="text" placeholder="Word" formControlName="original" [autofocus]="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Translation</ion-label>
+          <ion-input type="text" placeholder="Translation" formControlName="translation"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Example phrase</ion-label>
+          <ion-input type="text" placeholder="Example phrase" formControlName="phrase"></ion-input>
+        </ion-item>
+        <section>
+          <ion-button size="full" (click)="save()">Save</ion-button>
+          <ion-button size="full" fill="clear" (click)="closeModal()">Cancel</ion-button>
+        </section>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

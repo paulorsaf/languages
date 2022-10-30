@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Memorize</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="resetCacheAndRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <span *ngIf="!isLoading">
+    <section>
+      <div>{{wrong.length}} wrong</div>
+      <div>{{correct.length}} correct</div>
+    </section>
+    <main class="centralize">
+      <h1>{{index+1}} de {{translations?.length}}</h1>
+      <ion-card (click)="toggleReveal()">
+        <ion-card-content class="word">
+          <div class="centralize">
+            <span *ngIf="!reveal">
+              <h1 align="middle" *ngIf="!isReverted">{{currentTranslation?.original}}</h1>
+              <h1 align="middle"  *ngIf="isReverted">{{currentTranslation?.translation}}</h1>
+            </span>
+            <span *ngIf="reveal">
+              <h1 align="middle" *ngIf="isReverted">{{currentTranslation?.original}}</h1>
+              <h1 align="middle" *ngIf="!isReverted">{{currentTranslation?.translation}}</h1>
+            </span>
+          </div>
+        </ion-card-content>
+        <ion-card-content>
+          <span *ngIf="(!reveal && isReverted) || (reveal && !isReverted)">
+            <li *ngFor="let phrase of currentTranslation?.translationPhrases">
+              {{phrase}}
+            </li>
+          </span>
+        </ion-card-content>
+      </ion-card>
+    </main>
+  </span>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="isReverted = !isReverted">
+      <ion-icon name="return-up-forward-outline" *ngIf="!isReverted"></ion-icon>
+      <ion-icon name="return-down-back-outline" *ngIf="isReverted"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar *ngIf="!isFinished">
+    <ion-buttons slot="start">
+      <ion-button color="danger" fill="clear" (click)="setWrong($event)">Wrong</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="success" fill="clear" (click)="setCorrect($event)">Correct</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isFinished">
+    <ion-buttons slot="start">
+      <ion-button color="danger" fill="clear" *ngIf="wrong.length" (click)="seeWrongWords($event)">
+        Wrong words
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="success" fill="clear" (click)="restart($event)">Restart</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
