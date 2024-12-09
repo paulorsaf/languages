@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "languages-444211"
-  }
+  },
+  "targets": {
+    "languages-444211": {
+      "hosting": {
+        "languages-444211": [
+          "languages-444211"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
