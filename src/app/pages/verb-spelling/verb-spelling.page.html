@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      @if (hasSpelledAllVerbs) {
+        All verbs spelled
+      } @else {
+        {{verb?.root}}
+      }
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @if (hasSpelledAllVerbs) {
+    <h3 class="all-spelled">All verbs spelled</h3>
+  }
+
+  @if (verb) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Translation</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-text [ngClass]="shouldReviewTranslation ? '' : 'hidden-translation'">
+            {{verb.translation}}
+          </ion-text>
+          @if (!shouldReviewTranslation) {
+            <ion-button (click)="reviewTranslation()" fill="clear" slot="end">
+              <ion-icon name="eye"></ion-icon>
+            </ion-button>
+          }
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    @for (form of verb.forms; track form) {
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{form.description}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            @for (conjugation of form.conjugations; track conjugation) {
+              <ion-item>
+                <ion-input [label]="conjugation.pronoum"
+                  (ionBlur)="checkSpelling($event, conjugation)">
+                </ion-input>
+                @if (conjugation.status === VerbSpellingConjugationStatus.CORRECT) {
+                  <ion-note slot="end" color="success">
+                    {{conjugation.conjugation}}
+                  </ion-note>
+                }
+                @if (conjugation.status === VerbSpellingConjugationStatus.INCORRECT) {
+                  <ion-note slot="end" color="danger">
+                    {{conjugation.conjugation}}
+                  </ion-note>
+                }
+              </ion-item>
+            }
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    }
+  }
+</ion-content>
