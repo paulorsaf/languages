@@ -15,4 +15,4 @@ steps:
     args: ['deploy', '--token', '${_FIREBASE_TOKEN}', '--only', 'hosting:languages-444211']
 timeout: 1200s
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: NONE
