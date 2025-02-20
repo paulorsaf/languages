@@ -1,0 +1,227 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Nominative case</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nominative case</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>About</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>It reveals the subject of the sentence. This is the form listed in dictionaries.</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Usage</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h2>To express the subject of a sentence.</h2>
+            <p>- Я говорю по английски.</p>
+            <p>- Майкл учит русский.</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>When a noun or a pronoun is used alongside a verb.</h2>
+            <p>- Они купили машину.</p>
+            <p>- Пол читает книгу.</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>To provide further information about another noun.</h2>
+            <p>- Мои друг доктор, очень трудолюбив.</p>
+            <p>- Канал "Всемирная история" очень интересен.</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <h2>To indicate the subject complement.</h2>
+            <p>- Мария - учительница.</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pronouns</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h2>Я</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Ты</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Он/она/оно</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Мы</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Вы</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <h2>Они</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Genders</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table>
+        <thead>
+          <tr>
+            <td>Gender</td>
+            <td>Rule</td>
+            <td>Example</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3"><b>Masc</b></td>
+            <td>-consonant</td>
+            <td>сто<span class="underline">л</span></td>
+          </tr>
+          <tr>
+            <td>-й</td>
+            <td>музе<span class="underline">й</span></td>
+          </tr>
+          <tr>
+            <td>-ь</td>
+            <td>лошад<span class="underline">ь</span></td>
+          </tr>
+          <tr><td colspan="3"><br/></td></tr>
+          <tr>
+            <td rowspan="3"><b>Fem</b></td>
+            <td>-a</td>
+            <td>ручк<span class="underline">а</span></td>
+          </tr>
+          <tr>
+            <td>-я</td>
+            <td>кухн<span class="underline">я</span></td>
+          </tr>
+          <tr>
+            <td>-ь</td>
+            <td>ноч<span class="underline">ь</span></td>
+          </tr>
+          <tr><td colspan="3"><br/></td></tr>
+          <tr>
+            <td rowspan="3"><b>Neuter</b></td>
+            <td>-о</td>
+            <td>дерев<span class="underline">о</span></td>
+          </tr>
+          <tr>
+            <td>-е</td>
+            <td>солнц<span class="underline">е</span></td>
+          </tr>
+          <tr>
+            <td>-мя</td>
+            <td>и<span class="underline">мя</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Plural</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table>
+        <thead>
+          <tr>
+            <td>Gender</td>
+            <td>Rule</td>
+            <td>Example</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3"><b>Masc</b></td>
+            <td>-consonant -> +ы</td>
+            <td>сто<span class="underline">л</span> -> стол<span class="underline">ы</span></td>
+          </tr>
+          <tr>
+            <td>-й -> -и</td>
+            <td>музе<span class="underline">й</span> -> музе<span class="underline">и</span></td>
+          </tr>
+          <tr>
+            <td>-ь -> -и</td>
+            <td>лошад<span class="underline">ь</span> -> лошад<span class="underline">и</span></td>
+          </tr>
+          <tr><td colspan="3"><br/></td></tr>
+          <tr>
+            <td rowspan="4"><b>Fem</b></td>
+            <td>-a -> -ы</td>
+            <td>ручк<span class="underline">а</span> -> ручк<span class="underline">ы</span></td>
+          </tr>
+          <tr>
+            <td>-я -> -и</td>
+            <td>кухн<span class="underline">я</span> -> кухн<span class="underline">и</span></td>
+          </tr>
+          <tr>
+            <td>-ия -> -им</td>
+            <td>истор<span class="underline">ия</span> -> истор<span class="underline">им</span></td>
+          </tr>
+          <tr>
+            <td>-ь -> -и</td>
+            <td>ноч<span class="underline">ь</span> -> ноч<span class="underline">и</span></td>
+          </tr>
+          <tr><td colspan="3"><br/></td></tr>
+          <tr>
+            <td rowspan="4"><b>Neuter</b></td>
+            <td>-о -> -a</td>
+            <td>дерев<span class="underline">о</span> -> дерев<span class="underline">a</span></td>
+          </tr>
+          <tr>
+            <td>-е -> -я</td>
+            <td>мор<span class="underline">е</span> -> мор<span class="underline">я</span></td>
+          </tr>
+          <tr>
+            <td>-ие -> -ия</td>
+            <td>здан<span class="underline">ие</span> -> здан<span class="underline">ия</span></td>
+          </tr>
+          <tr>
+            <td>-мя -> -мена</td>
+            <td>и<span class="underline">ия</span> -> и<span class="underline">мена</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

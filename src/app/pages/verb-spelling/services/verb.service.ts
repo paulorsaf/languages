@@ -24,6 +24,7 @@ export class VerbService {
             id: verb?.id,
             language: verb?.language,
             root: verb?.root,
+            rootPerfective: verb?.rootPerfective,
             translation: verb?.translation,
             forms: (verb.forms || []).map(form => ({
                 description: form.description,
@@ -43,6 +44,7 @@ export class VerbService {
             id: verb?.id,
             language: verb?.language,
             root: verb?.root,
+            rootPerfective: verb?.rootPerfective,
             translation: verb?.translation,
             forms: (verb.forms || []).map(form => ({
                 description: form.description,

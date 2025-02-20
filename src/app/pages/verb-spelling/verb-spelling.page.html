@@ -23,6 +23,24 @@
   @if (verb) {
     <ion-card>
       <ion-card-header>
+        <ion-card-title>Perfective</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-text [ngClass]="shouldReviewPerfective ? '' : 'hidden-translation'">
+            {{verb.rootPerfective}}
+          </ion-text>
+          @if (!shouldReviewPerfective) {
+            <ion-button (click)="reviewPerfective()" fill="clear" slot="end">
+              <ion-icon name="eye"></ion-icon>
+            </ion-button>
+          }
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
         <ion-card-title>Translation</ion-card-title>
       </ion-card-header>
       <ion-card-content>
@@ -39,6 +57,7 @@
       </ion-card-content>
     </ion-card>
 
+    <h2 class="ion-padding">Perfective conjugation</h2>
     @for (form of verb.forms; track form) {
       <ion-card>
         <ion-card-header>
@@ -67,5 +86,6 @@
         </ion-card-content>
       </ion-card>
     }
+    <h2 class="ion-padding">Imperfective conjugation</h2>
   }
 </ion-content>

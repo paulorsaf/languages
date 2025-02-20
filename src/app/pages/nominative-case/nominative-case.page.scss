@@ -1,0 +1,11 @@
+ion-item::part(native) {
+    padding-left: 0;
+}
+
+table {
+    font-size: 1rem;
+    width: 100%;
+    thead {
+        font-weight: 600;
+    }
+}

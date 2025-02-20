@@ -2,6 +2,7 @@ export type Verb = {
     id: string;
     language: string;
     root: string;
+    rootPerfective: string;
     translation: string;
     forms: VerbForm[];
 }

@@ -3,6 +3,7 @@ export type VerbSpelling = {
     forms: VerbSpellingForm[];
     language: string;
     root: string;
+    rootPerfective: string;
     translation: string;
 }
 

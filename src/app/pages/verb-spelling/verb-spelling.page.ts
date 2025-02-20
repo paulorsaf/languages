@@ -13,6 +13,7 @@ import { CorrectSpellingPopoverComponent } from './components/correct-spelling-p
 export class VerbSpellingPage implements OnInit {
 
   hasSpelledAllVerbs = false;
+  shouldReviewPerfective = false;
   shouldReviewTranslation = false;
   spelledVerbIds: string[] = [];
   totalAmountOfVerbs?: number;
@@ -66,6 +67,10 @@ export class VerbSpellingPage implements OnInit {
 
   reviewTranslation() {
     this.shouldReviewTranslation = true;
+  }
+
+  reviewPerfective() {
+    this.shouldReviewPerfective = true;
   }
 
   get VerbSpellingConjugationStatus() {
