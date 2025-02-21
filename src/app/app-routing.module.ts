@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'nominative-case',
     loadChildren: () => import('./pages/nominative-case/nominative-case.module').then( m => m.NominativeCasePageModule)
+  },
+  {
+    path: 'genitive-case',
+    loadChildren: () => import('./pages/genitive-case/genitive-case.module').then( m => m.GenitiveCasePageModule)
   }
 ];
 

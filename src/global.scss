@@ -39,3 +39,14 @@
 .underline {
     text-decoration: underline;
 }
+
+table {
+    font-size: 1rem;
+    width: 100%;
+    thead {
+        font-weight: 600;
+    }
+    td {
+        padding-right: 2px;
+    }
+}
