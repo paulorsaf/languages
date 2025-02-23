@@ -1,11 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      @if (hasSpelledAllVerbs) {
-        All verbs spelled
-      } @else {
-        {{verb?.root}}
-      }
+      {{verb?.root}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="refresh()">
@@ -16,10 +12,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  @if (hasSpelledAllVerbs) {
-    <h3 class="all-spelled">All verbs spelled</h3>
-  }
-
   @if (verb) {
     <ion-card>
       <ion-card-header>

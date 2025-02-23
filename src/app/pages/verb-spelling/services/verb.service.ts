@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { verbsMock } from '../mocks/verb.mock';
+import { map, Observable, of } from 'rxjs';
 import { VerbSpelling, VerbSpellingConjugation, VerbSpellingConjugationStatus } from '../types/verb-spelling.type';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -16,49 +16,41 @@ export class VerbService {
         { accent: 'е́', replaceBy: 'е' },
         { accent: 'ю́', replaceBy: 'ю' },
         { accent: 'а́', replaceBy: 'а' },
-    ]
+    ];
 
-    findById(id: string): Observable<VerbSpelling | undefined> {
-        const verb = verbsMock.find(verb => verb.id === id);
-        return of(verb ? {
-            id: verb?.id,
-            language: verb?.language,
-            root: verb?.root,
-            rootPerfective: verb?.rootPerfective,
-            translation: verb?.translation,
-            forms: (verb.forms || []).map(form => ({
-                description: form.description,
-                conjugations: (form.conjugations || []).map(conjugation => ({
-                    conjugation: conjugation.conjugation,
-                    pronoum: conjugation.pronoum,
-                    status: VerbSpellingConjugationStatus.NOT_SPELLED,
-                }))
-            }))
-        } : undefined);
-    }
+    constructor(
+        private db: AngularFirestore
+    ){}
 
     findRandom(): Observable<VerbSpelling | undefined> {
-        const random = Math.floor(Math.random() * verbsMock.length);
-        const verb = verbsMock[random];
-        return of(verb ? {
-            id: verb?.id,
-            language: verb?.language,
-            root: verb?.root,
-            rootPerfective: verb?.rootPerfective,
-            translation: verb?.translation,
-            forms: (verb.forms || []).map(form => ({
-                description: form.description,
-                conjugations: (form.conjugations || []).map(conjugation => ({
-                    conjugation: conjugation.conjugation,
-                    pronoum: conjugation.pronoum,
-                    status: VerbSpellingConjugationStatus.NOT_SPELLED,
-                }))
-            }))
-        } : undefined);
-    }
-
-    findTotalAmount(): Observable<number> {
-        return of(verbsMock.length);
+        const randomIndex = parseInt((1 + (Math.random() * 104)).toString());
+        return this.db
+            .collection('verbs', ref => ref.where('index', '==', randomIndex))
+            .get()
+            .pipe(
+                map(snapshot => {
+                    if (snapshot.empty) {
+                        return undefined;
+                    }
+                    const doc = snapshot.docs[0];
+                    const verb = doc.data() as VerbSpelling;
+                    return {
+                        id: doc.id,
+                        language: verb?.language,
+                        root: verb?.root,
+                        rootPerfective: verb?.rootPerfective,
+                        translation: verb?.translation,
+                        forms: (verb.forms || []).map(form => ({
+                            description: form.description,
+                            conjugations: (form.conjugations || []).map(conjugation => ({
+                                conjugation: conjugation.conjugation,
+                                pronoum: conjugation.pronoum,
+                                status: VerbSpellingConjugationStatus.NOT_SPELLED,
+                            }))
+                        }))
+                    }
+                })
+            )
     }
 
     isSpellingCorrect(spelling: string, conjugation: VerbSpellingConjugation): boolean {

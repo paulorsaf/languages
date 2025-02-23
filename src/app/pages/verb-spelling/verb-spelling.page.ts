@@ -12,11 +12,9 @@ import { CorrectSpellingPopoverComponent } from './components/correct-spelling-p
 })
 export class VerbSpellingPage implements OnInit {
 
-  hasSpelledAllVerbs = false;
   shouldReviewPerfective = false;
   shouldReviewTranslation = false;
   spelledVerbIds: string[] = [];
-  totalAmountOfVerbs?: number;
   verb?: VerbSpelling;
 
   constructor(
@@ -25,11 +23,6 @@ export class VerbSpellingPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.verbService
-      .findTotalAmount()
-      .pipe(take(1))
-      .subscribe(totalAmount => this.totalAmountOfVerbs = totalAmount);
-
     this.findRandomVerb()
       .subscribe(verb => this.verb = verb);
   }
@@ -78,16 +71,13 @@ export class VerbSpellingPage implements OnInit {
   }
 
   private findRandomVerb(): Observable<VerbSpelling | undefined> {
+    this.shouldReviewPerfective = false;
     this.shouldReviewTranslation = false;
     return this.verbService
       .findRandom()
       .pipe(
         take(1),
         switchMap(verb => {
-          if (this.spelledVerbIds.length === this.totalAmountOfVerbs) {
-            this.hasSpelledAllVerbs = true;
-            return of(undefined);
-          }
           if (this.spelledVerbIds.some(id => verb!.id === id)) {
             return this.findRandomVerb();
           }
